@@ -3,6 +3,7 @@ package main
 import (
 	"github.com/gin-gonic/gin"
 	"github.com/tessyelots/ambulance-webapi/api"
+	"github.com/tessyelots/ambulance-webapi/internal/ambulance_wl"
 	"log"
 	"os"
 	"strings"
@@ -21,6 +22,11 @@ func main() {
 	engine := gin.New()
 	engine.Use(gin.Recovery())
 	// request routings
+	handleFunctions := &ambulance_wl.ApiHandleFunctions{
+		AmbulanceConditionsAPI:  ambulance_wl.NewAmbulanceConditionsApi(),
+		AmbulanceWaitingListAPI: ambulance_wl.NewAmbulanceWaitingListApi(),
+	}
+	ambulance_wl.NewRouterWithGinEngine(engine, *handleFunctions)
 	engine.GET("/openapi", api.HandleOpenApi)
 	engine.Run(":" + port)
 }
