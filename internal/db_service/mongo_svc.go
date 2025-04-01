@@ -123,7 +123,7 @@ func (m *mongoSvc[DocType]) connect(ctx context.Context) (*mongo.Client, error) 
 	defer contextCancel()
 
 	var uri = fmt.Sprintf("mongodb://%v:%v", m.ServerHost, m.ServerPort)
-	log.Printf("Using URI: " + uri)
+	log.Printf("%s", "Using URI: "+uri)
 
 	if len(m.UserName) != 0 {
 		uri = fmt.Sprintf("mongodb://%v:%v@%v:%v", m.UserName, m.Password, m.ServerHost, m.ServerPort)
