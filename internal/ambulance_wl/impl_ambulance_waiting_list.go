@@ -2,10 +2,12 @@ package ambulance_wl
 
 import (
 	"net/http"
+	"time"
+
+	"slices"
 
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
-	"slices"
 )
 
 type implAmbulanceWaitingListAPI struct {
